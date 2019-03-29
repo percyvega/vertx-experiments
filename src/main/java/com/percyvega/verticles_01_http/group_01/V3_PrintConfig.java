@@ -1,4 +1,4 @@
-package com.percyvega.verticle_group_01;
+package com.percyvega.verticles_01_http.group_01;
 
 import io.vertx.config.ConfigRetriever;
 import io.vertx.core.AbstractVerticle;
@@ -13,7 +13,7 @@ public class V3_PrintConfig extends AbstractVerticle {
     private static final Logger LOGGER = LoggerFactory.getLogger(V3_PrintConfig.class);
 
     public static void main(String[] args) {
-        LOGGER.info("Hello from " + V3_PrintConfig.class.getSimpleName());
+        LOGGER.info("*********************************************************** Hello from " + V3_PrintConfig.class.getSimpleName());
 
         Vertx vertx = Vertx.vertx();
 
@@ -30,7 +30,7 @@ public class V3_PrintConfig extends AbstractVerticle {
 
     @Override
     public void start() throws Exception {
-        LOGGER.info("Verticle App Started");
+        LOGGER.info("*********************************************************** Verticle App Started ***********************************************************");
 
         vertx
                 .createHttpServer()
@@ -42,6 +42,6 @@ public class V3_PrintConfig extends AbstractVerticle {
 
     @Override
     public void stop() throws Exception {
-        LOGGER.info("Verticle App Stopped");
+        LOGGER.info("*********************************************************** Verticle App Stopped ***********************************************************");
     }
 }

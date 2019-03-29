@@ -1,4 +1,4 @@
-package com.percyvega.verticle_group_06;
+package com.percyvega.verticles_03_eventbus.group_01;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
@@ -9,12 +9,12 @@ import io.vertx.core.logging.LoggerFactory;
 
 import java.time.LocalTime;
 
-public class V1_EventBus_Receiver extends AbstractVerticle {
+public class V1_EventBus_Consumer extends AbstractVerticle {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(V1_EventBus_Receiver.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(V1_EventBus_Consumer.class);
 
     public static void main(String[] args) {
-        LOGGER.info("Hello from " + V1_EventBus_Receiver.class.getSimpleName());
+        LOGGER.info("*********************************************************** Hello from " + V1_EventBus_Consumer.class.getSimpleName());
 
         VertxOptions vertxOptions = new VertxOptions();
         vertxOptions.setClustered(true);
@@ -22,14 +22,14 @@ public class V1_EventBus_Receiver extends AbstractVerticle {
         Vertx.clusteredVertx(vertxOptions, resultHandler -> {
             if(resultHandler.succeeded()) {
                 Vertx vertx = resultHandler.result();
-                vertx.deployVerticle(new V1_EventBus_Receiver());
+                vertx.deployVerticle(new V1_EventBus_Consumer());
             }
         });
     }
 
     @Override
     public void start() throws Exception {
-        LOGGER.info("Verticle App Started");
+        LOGGER.info("*********************************************************** Verticle App Started ***********************************************************");
 
         vertx.eventBus().consumer("com.percyvega.vertx.eventbus", messageHandler -> {
             JsonObject toReply = new JsonObject().put("Answer", LocalTime.now().toString());
@@ -40,6 +40,6 @@ public class V1_EventBus_Receiver extends AbstractVerticle {
 
     @Override
     public void stop() throws Exception {
-        LOGGER.info("Verticle App Stopped");
+        LOGGER.info("*********************************************************** Verticle App Stopped ***********************************************************");
     }
 }

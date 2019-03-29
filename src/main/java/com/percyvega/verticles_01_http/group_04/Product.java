@@ -1,4 +1,4 @@
-package com.percyvega.verticle_group_04;
+package com.percyvega.verticles_01_http.group_04;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

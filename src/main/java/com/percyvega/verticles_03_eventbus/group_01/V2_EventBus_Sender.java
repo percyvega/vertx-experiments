@@ -1,4 +1,4 @@
-package com.percyvega.verticle_group_06;
+package com.percyvega.verticles_03_eventbus.group_01;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
@@ -7,12 +7,14 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 
+import java.time.LocalTime;
+
 public class V2_EventBus_Sender extends AbstractVerticle {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(V2_EventBus_Sender.class);
 
     public static void main(String[] args) {
-        LOGGER.info("Hello from " + V2_EventBus_Sender.class.getSimpleName());
+        LOGGER.info("*********************************************************** Hello from " + V2_EventBus_Sender.class.getSimpleName());
 
         VertxOptions vertxOptions = new VertxOptions();
         vertxOptions.setClustered(true);
@@ -27,14 +29,14 @@ public class V2_EventBus_Sender extends AbstractVerticle {
 
     @Override
     public void start() throws Exception {
-        LOGGER.info("Verticle App Started");
+        LOGGER.info("*********************************************************** Verticle App Started ***********************************************************");
 
         vertx.setPeriodic(5000, handler -> sendMessageToBus());
     }
 
     private void sendMessageToBus() {
         JsonObject messageToSend = new JsonObject();
-        messageToSend.put("Question", "What time is it?");
+        messageToSend.put("Question", "What time is it over there? Here it is " + LocalTime.now());
 
         LOGGER.info("Sending message: " + messageToSend);
 
@@ -50,6 +52,6 @@ public class V2_EventBus_Sender extends AbstractVerticle {
 
     @Override
     public void stop() throws Exception {
-        LOGGER.info("Verticle App Stopped");
+        LOGGER.info("*********************************************************** Verticle App Stopped ***********************************************************");
     }
 }

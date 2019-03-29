@@ -1,4 +1,4 @@
-package com.percyvega.verticle_group_02;
+package com.percyvega.verticles_01_http.group_02;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
@@ -18,7 +18,7 @@ public class V2_HtmlFileWithPlaceholders extends AbstractVerticle {
     private static final Logger LOGGER = LoggerFactory.getLogger(V2_HtmlFileWithPlaceholders.class);
 
     public static void main(String[] args) {
-        LOGGER.info("Hello from " + V2_HtmlFileWithPlaceholders.class.getSimpleName());
+        LOGGER.info("*********************************************************** Hello from " + V2_HtmlFileWithPlaceholders.class.getSimpleName());
 
         Vertx vertx = Vertx.vertx();
         vertx.deployVerticle(new V2_HtmlFileWithPlaceholders());
@@ -26,7 +26,7 @@ public class V2_HtmlFileWithPlaceholders extends AbstractVerticle {
 
     @Override
     public void start() throws Exception {
-        LOGGER.info("Verticle App Started");
+        LOGGER.info("*********************************************************** Verticle App Started ***********************************************************");
 
         Router router = Router.router(vertx);
 
@@ -70,6 +70,6 @@ public class V2_HtmlFileWithPlaceholders extends AbstractVerticle {
 
     @Override
     public void stop() throws Exception {
-        LOGGER.info("Verticle App Stopped");
+        LOGGER.info("*********************************************************** Verticle App Stopped ***********************************************************");
     }
 }

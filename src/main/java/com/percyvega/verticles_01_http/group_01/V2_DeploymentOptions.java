@@ -1,4 +1,4 @@
-package com.percyvega.verticle_group_01;
+package com.percyvega.verticles_01_http.group_01;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.DeploymentOptions;
@@ -12,7 +12,7 @@ public class V2_DeploymentOptions extends AbstractVerticle {
     private static final Logger LOGGER = LoggerFactory.getLogger(V2_DeploymentOptions.class);
 
     public static void main(String[] args) {
-        LOGGER.info("Hello from " + V2_DeploymentOptions.class.getSimpleName());
+        LOGGER.info("*********************************************************** Hello from " + V2_DeploymentOptions.class.getSimpleName());
 
         Vertx vertx = Vertx.vertx();
         vertx.deployVerticle(new V2_DeploymentOptions(), getDeploymentOptions());
@@ -20,7 +20,7 @@ public class V2_DeploymentOptions extends AbstractVerticle {
 
     @Override
     public void start() throws Exception {
-        LOGGER.info("Verticle App Started");
+        LOGGER.info("*********************************************************** Verticle App Started ***********************************************************");
 
         vertx
                 .createHttpServer()
@@ -32,7 +32,7 @@ public class V2_DeploymentOptions extends AbstractVerticle {
 
     @Override
     public void stop() throws Exception {
-        LOGGER.info("Verticle App Stopped");
+        LOGGER.info("*********************************************************** Verticle App Stopped ***********************************************************");
     }
 
     private static DeploymentOptions getDeploymentOptions() {

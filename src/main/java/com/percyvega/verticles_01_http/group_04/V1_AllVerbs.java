@@ -1,4 +1,4 @@
-package com.percyvega.verticle_group_04;
+package com.percyvega.verticles_01_http.group_04;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
@@ -12,7 +12,7 @@ public class V1_AllVerbs extends AbstractVerticle {
     private static final Logger LOGGER = LoggerFactory.getLogger(V1_AllVerbs.class);
 
     public static void main(String[] args) {
-        LOGGER.info("Hello from " + V1_AllVerbs.class.getSimpleName());
+        LOGGER.info("*********************************************************** Hello from " + V1_AllVerbs.class.getSimpleName());
 
         Vertx vertx = Vertx.vertx();
         vertx.deployVerticle(new V1_AllVerbs());
@@ -20,7 +20,7 @@ public class V1_AllVerbs extends AbstractVerticle {
 
     @Override
     public void start() throws Exception {
-        LOGGER.info("Verticle App Started");
+        LOGGER.info("*********************************************************** Verticle App Started ***********************************************************");
 
         Router router = Router.router(vertx);
 
@@ -46,7 +46,7 @@ public class V1_AllVerbs extends AbstractVerticle {
 
     @Override
     public void stop() throws Exception {
-        LOGGER.info("Verticle App Stopped");
+        LOGGER.info("*********************************************************** Verticle App Stopped ***********************************************************");
     }
 }
 

@@ -1,4 +1,4 @@
-package com.percyvega.verticle_group_05;
+package com.percyvega.verticles_02_mongodb;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
@@ -24,7 +24,7 @@ public class V1_MongoDb extends AbstractVerticle {
     private static MongoClient mongoClient;
 
     public static void main(String[] args) {
-        LOGGER.info("Hello from " + V1_MongoDb.class.getSimpleName());
+        LOGGER.info("*********************************************************** Hello from " + V1_MongoDb.class.getSimpleName());
 
         Vertx vertx = Vertx.vertx();
         vertx.deployVerticle(new V1_MongoDb());
@@ -32,7 +32,7 @@ public class V1_MongoDb extends AbstractVerticle {
 
     @Override
     public void start() throws Exception {
-        LOGGER.info("Verticle App Started");
+        LOGGER.info("*********************************************************** Verticle App Started ***********************************************************");
 
         initMongoClient();
 
@@ -82,7 +82,7 @@ public class V1_MongoDb extends AbstractVerticle {
 
     @Override
     public void stop() throws Exception {
-        LOGGER.info("Verticle App Stopped");
+        LOGGER.info("*********************************************************** Verticle App Stopped ***********************************************************");
     }
 }
 

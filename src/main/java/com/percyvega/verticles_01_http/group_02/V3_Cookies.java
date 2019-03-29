@@ -1,4 +1,4 @@
-package com.percyvega.verticle_group_02;
+package com.percyvega.verticles_01_http.group_02;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
@@ -21,7 +21,7 @@ public class V3_Cookies extends AbstractVerticle {
     private static final Logger LOGGER = LoggerFactory.getLogger(V3_Cookies.class);
 
     public static void main(String[] args) {
-        LOGGER.info("Hello from " + V3_Cookies.class.getSimpleName());
+        LOGGER.info("*********************************************************** Hello from " + V3_Cookies.class.getSimpleName());
 
         Vertx vertx = Vertx.vertx();
         vertx.deployVerticle(new V3_Cookies());
@@ -29,7 +29,7 @@ public class V3_Cookies extends AbstractVerticle {
 
     @Override
     public void start() throws Exception {
-        LOGGER.info("Verticle App Started");
+        LOGGER.info("*********************************************************** Verticle App Started ***********************************************************");
 
         Router router = Router.router(vertx);
 
@@ -80,6 +80,6 @@ public class V3_Cookies extends AbstractVerticle {
 
     @Override
     public void stop() throws Exception {
-        LOGGER.info("Verticle App Stopped");
+        LOGGER.info("*********************************************************** Verticle App Stopped ***********************************************************");
     }
 }

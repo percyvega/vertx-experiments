@@ -24,7 +24,7 @@ public class V1_ArtificialUrl extends AbstractVerticle {
     }
 
     @Override
-    public void start() throws Exception {
+    public void start() {
         LOGGER.info("*********************************************************** Verticle App Started ***********************************************************");
 
         Router router = Router.router(vertx);
@@ -55,7 +55,7 @@ public class V1_ArtificialUrl extends AbstractVerticle {
     }
 
     @Override
-    public void stop() throws Exception {
+    public void stop() {
         LOGGER.info("*********************************************************** Verticle App Stopped ***********************************************************");
     }
 }

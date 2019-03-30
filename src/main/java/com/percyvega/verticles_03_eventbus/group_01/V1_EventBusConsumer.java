@@ -9,26 +9,26 @@ import io.vertx.core.logging.LoggerFactory;
 
 import java.time.LocalTime;
 
-public class V1_EventBus_Consumer extends AbstractVerticle {
+public class V1_EventBusConsumer extends AbstractVerticle {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(V1_EventBus_Consumer.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(V1_EventBusConsumer.class);
 
     public static void main(String[] args) {
-        LOGGER.info("*********************************************************** Hello from " + V1_EventBus_Consumer.class.getSimpleName());
+        LOGGER.info("*********************************************************** Hello from " + V1_EventBusConsumer.class.getSimpleName());
 
         VertxOptions vertxOptions = new VertxOptions();
         vertxOptions.setClustered(true);
 
         Vertx.clusteredVertx(vertxOptions, resultHandler -> {
-            if(resultHandler.succeeded()) {
+            if (resultHandler.succeeded()) {
                 Vertx vertx = resultHandler.result();
-                vertx.deployVerticle(new V1_EventBus_Consumer());
+                vertx.deployVerticle(new V1_EventBusConsumer());
             }
         });
     }
 
     @Override
-    public void start() throws Exception {
+    public void start() {
         LOGGER.info("*********************************************************** Verticle App Started ***********************************************************");
 
         vertx.eventBus().consumer("com.percyvega.vertx.eventbus", messageHandler -> {
@@ -39,7 +39,7 @@ public class V1_EventBus_Consumer extends AbstractVerticle {
     }
 
     @Override
-    public void stop() throws Exception {
+    public void stop() {
         LOGGER.info("*********************************************************** Verticle App Stopped ***********************************************************");
     }
 }

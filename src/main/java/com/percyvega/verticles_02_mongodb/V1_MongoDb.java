@@ -31,7 +31,7 @@ public class V1_MongoDb extends AbstractVerticle {
     }
 
     @Override
-    public void start() throws Exception {
+    public void start() {
         LOGGER.info("*********************************************************** Verticle App Started ***********************************************************");
 
         initMongoClient();
@@ -81,7 +81,7 @@ public class V1_MongoDb extends AbstractVerticle {
     }
 
     @Override
-    public void stop() throws Exception {
+    public void stop() {
         LOGGER.info("*********************************************************** Verticle App Stopped ***********************************************************");
     }
 }

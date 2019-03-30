@@ -1,4 +1,4 @@
-package com.percyvega.verticles_03_eventbus.group_01;
+package com.percyvega.verticles_03_eventbus.group_02;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
@@ -9,12 +9,14 @@ import io.vertx.core.logging.LoggerFactory;
 
 import java.time.LocalTime;
 
-public class V2_EventBus_Sender extends AbstractVerticle {
+public class V2_HopefulSender extends AbstractVerticle {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(V2_EventBus_Sender.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(V2_HopefulSender.class);
+
+    private static int counter = 0;
 
     public static void main(String[] args) {
-        LOGGER.info("*********************************************************** Hello from " + V2_EventBus_Sender.class.getSimpleName());
+        LOGGER.info("*********************************************************** Hello from " + V2_HopefulSender.class.getSimpleName());
 
         VertxOptions vertxOptions = new VertxOptions();
         vertxOptions.setClustered(true);
@@ -22,36 +24,35 @@ public class V2_EventBus_Sender extends AbstractVerticle {
         Vertx.clusteredVertx(vertxOptions, resultHandler -> {
             if(resultHandler.succeeded()) {
                 Vertx vertx = resultHandler.result();
-                vertx.deployVerticle(new V2_EventBus_Sender());
+                vertx.deployVerticle(new V2_HopefulSender());
             }
         });
     }
 
     @Override
-    public void start() throws Exception {
+    public void start() {
         LOGGER.info("*********************************************************** Verticle App Started ***********************************************************");
 
         vertx.setPeriodic(5000, handler -> sendMessageToBus());
     }
 
     private void sendMessageToBus() {
-        JsonObject messageToSend = new JsonObject();
-        messageToSend.put("Question", "What time is it over there? Here it is " + LocalTime.now());
+        String messageToSend = "Percy " + ++counter;
 
-        LOGGER.info("Sending message: " + messageToSend);
+        LOGGER.info("+++++++++++++++++++++++++++++ Sending message: " + messageToSend);
 
-        vertx.eventBus().send("com.percyvega.vertx.eventbus", messageToSend, replyHandler -> {
+        vertx.eventBus().send("com.percyvega.vertx.eventbus.hello", messageToSend, replyHandler -> {
             if(replyHandler.succeeded()) {
                 JsonObject reply = (JsonObject) replyHandler.result().body();
-                LOGGER.info("Received reply: " + reply);
+                LOGGER.info("+++++++++++++++++++++++++++++ Received reply: " + reply);
             } else {
-                LOGGER.error("replyHandler failed");
+                LOGGER.error("+++++++++++++++++++++++++++++ replyHandler failed");
             }
         });
     }
 
     @Override
-    public void stop() throws Exception {
+    public void stop() {
         LOGGER.info("*********************************************************** Verticle App Stopped ***********************************************************");
     }
 }

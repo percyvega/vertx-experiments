@@ -28,7 +28,7 @@ public class V3_Cookies extends AbstractVerticle {
     }
 
     @Override
-    public void start() throws Exception {
+    public void start() {
         LOGGER.info("*********************************************************** Verticle App Started ***********************************************************");
 
         Router router = Router.router(vertx);
@@ -79,7 +79,7 @@ public class V3_Cookies extends AbstractVerticle {
     }
 
     @Override
-    public void stop() throws Exception {
+    public void stop() {
         LOGGER.info("*********************************************************** Verticle App Stopped ***********************************************************");
     }
 }

@@ -15,10 +15,10 @@ import java.util.Scanner;
 
 public class V2_HtmlFileWithPlaceholders extends AbstractVerticle {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(V2_HtmlFileWithPlaceholders.class);
+    private static final Logger log = LoggerFactory.getLogger(V2_HtmlFileWithPlaceholders.class);
 
     public static void main(String[] args) {
-        LOGGER.info("*********************************************************** Hello from " + V2_HtmlFileWithPlaceholders.class.getSimpleName());
+        log.info("*********************************************************** Hello from " + V2_HtmlFileWithPlaceholders.class.getSimpleName());
 
         Vertx vertx = Vertx.vertx();
         vertx.deployVerticle(new V2_HtmlFileWithPlaceholders());
@@ -26,7 +26,7 @@ public class V2_HtmlFileWithPlaceholders extends AbstractVerticle {
 
     @Override
     public void start() {
-        LOGGER.info("*********************************************************** Verticle App Started ***********************************************************");
+        log.info("*********************************************************** Verticle App Started ***********************************************************");
 
         Router router = Router.router(vertx);
 
@@ -70,6 +70,6 @@ public class V2_HtmlFileWithPlaceholders extends AbstractVerticle {
 
     @Override
     public void stop() {
-        LOGGER.info("*********************************************************** Verticle App Stopped ***********************************************************");
+        log.info("*********************************************************** Verticle App Stopped ***********************************************************");
     }
 }

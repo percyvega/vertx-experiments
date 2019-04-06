@@ -15,7 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class VertxThreads {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(VertxThreads.class);
+    private static final Logger log = LoggerFactory.getLogger(VertxThreads.class);
 
     private static final List<String> threadNamesAlreadyDisplayed = new ArrayList<>();
     private static int threadsCount = 0;
@@ -31,9 +31,9 @@ public class VertxThreads {
         runManyVerticles(vertx, true);
         logThreadsInfo();
 
-        LOGGER.info("================================================================");
+        log.info("================================================================");
         for (Map.Entry<String, AtomicInteger> entry : verticlesPerThread.entrySet()) {
-            LOGGER.info(entry.getKey() + ", " + entry.getValue());
+            log.info(entry.getKey() + ", " + entry.getValue());
         }
     }
 
@@ -49,18 +49,18 @@ public class VertxThreads {
     }
 
     private static void logThreadsInfo() {
-        LOGGER.info("----------------------------------------------------------------");
+        log.info("----------------------------------------------------------------");
         Map<Thread, StackTraceElement[]> allStackTraces = Thread.getAllStackTraces();
         int oldThreadsCount = threadsCount;
         for (Thread thread : allStackTraces.keySet()) {
             String threadName = thread.getName();
             if(!threadNamesAlreadyDisplayed.contains(threadName)) {
-                LOGGER.info(threadName);
+                log.info(threadName);
                 ++threadsCount;
                 threadNamesAlreadyDisplayed.add(threadName);
             }
         }
-        LOGGER.info("New threads count: " + (threadsCount - oldThreadsCount));
+        log.info("New threads count: " + (threadsCount - oldThreadsCount));
     }
 }
 

@@ -9,10 +9,10 @@ import io.vertx.ext.web.handler.StaticHandler;
 
 public class V1_HtmlFilesUnderWebroot extends AbstractVerticle {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(V1_HtmlFilesUnderWebroot.class);
+    private static final Logger log = LoggerFactory.getLogger(V1_HtmlFilesUnderWebroot.class);
 
     public static void main(String[] args) {
-        LOGGER.info("*********************************************************** Hello from " + V1_HtmlFilesUnderWebroot.class.getSimpleName());
+        log.info("*********************************************************** Hello from " + V1_HtmlFilesUnderWebroot.class.getSimpleName());
 
         Vertx vertx = Vertx.vertx();
         vertx.deployVerticle(new V1_HtmlFilesUnderWebroot());
@@ -20,7 +20,7 @@ public class V1_HtmlFilesUnderWebroot extends AbstractVerticle {
 
     @Override
     public void start() {
-        LOGGER.info("*********************************************************** Verticle App Started ***********************************************************");
+        log.info("*********************************************************** Verticle App Started ***********************************************************");
 
         Router router = Router.router(vertx);
 
@@ -36,6 +36,6 @@ public class V1_HtmlFilesUnderWebroot extends AbstractVerticle {
 
     @Override
     public void stop() {
-        LOGGER.info("*********************************************************** Verticle App Stopped ***********************************************************");
+        log.info("*********************************************************** Verticle App Stopped ***********************************************************");
     }
 }

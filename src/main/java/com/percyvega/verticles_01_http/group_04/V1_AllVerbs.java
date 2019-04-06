@@ -9,10 +9,10 @@ import io.vertx.ext.web.handler.StaticHandler;
 
 public class V1_AllVerbs extends AbstractVerticle {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(V1_AllVerbs.class);
+    private static final Logger log = LoggerFactory.getLogger(V1_AllVerbs.class);
 
     public static void main(String[] args) {
-        LOGGER.info("*********************************************************** Hello from " + V1_AllVerbs.class.getSimpleName());
+        log.info("*********************************************************** Hello from " + V1_AllVerbs.class.getSimpleName());
 
         Vertx vertx = Vertx.vertx();
         vertx.deployVerticle(new V1_AllVerbs());
@@ -20,7 +20,7 @@ public class V1_AllVerbs extends AbstractVerticle {
 
     @Override
     public void start() {
-        LOGGER.info("*********************************************************** Verticle App Started ***********************************************************");
+        log.info("*********************************************************** Verticle App Started ***********************************************************");
 
         Router router = Router.router(vertx);
 
@@ -37,16 +37,16 @@ public class V1_AllVerbs extends AbstractVerticle {
                 .requestHandler(router)
                 .listen(port, asyncResult -> {
                     if(asyncResult.succeeded()) {
-                        LOGGER.info("HTTP server running on port " + port);
+                        log.info("HTTP server running on port " + port);
                     } else {
-                        LOGGER.info("Could not start an HTTP server", asyncResult.cause());
+                        log.info("Could not start an HTTP server", asyncResult.cause());
                     }
                 });
     }
 
     @Override
     public void stop() {
-        LOGGER.info("*********************************************************** Verticle App Stopped ***********************************************************");
+        log.info("*********************************************************** Verticle App Stopped ***********************************************************");
     }
 }
 

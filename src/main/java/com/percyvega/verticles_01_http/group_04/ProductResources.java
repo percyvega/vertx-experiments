@@ -17,7 +17,7 @@ import java.util.Optional;
 
 public class ProductResources {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProductResources.class);
+    private static final Logger log = LoggerFactory.getLogger(ProductResources.class);
 
     private static List<Product> products = new ArrayList<>(Arrays.asList(
             new Product(1, "My item 1"),
@@ -44,13 +44,13 @@ public class ProductResources {
         String authToken = routingContext.request().headers().get("AuthToken");
 
         if(authToken == null || !authToken.equals("123")) {
-            LOGGER.info("Failed basic auth check");
+            log.info("Failed basic auth check");
             routingContext
                     .response()
                     .setStatusCode(401)
                     .end(Json.encodePrettily(new JsonObject().put("error", "Not Authorized to use these APIs")));
         } else {
-            LOGGER.info("Passed basic auth check");
+            log.info("Passed basic auth check");
             routingContext.response().putHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
             routingContext.response().putHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, "GET,POST,PUT,DELETE");
 

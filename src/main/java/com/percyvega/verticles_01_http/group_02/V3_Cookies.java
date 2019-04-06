@@ -18,10 +18,10 @@ import java.util.Scanner;
 
 public class V3_Cookies extends AbstractVerticle {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(V3_Cookies.class);
+    private static final Logger log = LoggerFactory.getLogger(V3_Cookies.class);
 
     public static void main(String[] args) {
-        LOGGER.info("*********************************************************** Hello from " + V3_Cookies.class.getSimpleName());
+        log.info("*********************************************************** Hello from " + V3_Cookies.class.getSimpleName());
 
         Vertx vertx = Vertx.vertx();
         vertx.deployVerticle(new V3_Cookies());
@@ -29,7 +29,7 @@ public class V3_Cookies extends AbstractVerticle {
 
     @Override
     public void start() {
-        LOGGER.info("*********************************************************** Verticle App Started ***********************************************************");
+        log.info("*********************************************************** Verticle App Started ***********************************************************");
 
         Router router = Router.router(vertx);
 
@@ -80,6 +80,6 @@ public class V3_Cookies extends AbstractVerticle {
 
     @Override
     public void stop() {
-        LOGGER.info("*********************************************************** Verticle App Stopped ***********************************************************");
+        log.info("*********************************************************** Verticle App Stopped ***********************************************************");
     }
 }

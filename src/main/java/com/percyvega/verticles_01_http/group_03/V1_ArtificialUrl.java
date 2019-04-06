@@ -14,10 +14,10 @@ import java.util.Arrays;
 
 public class V1_ArtificialUrl extends AbstractVerticle {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(V1_ArtificialUrl.class);
+    private static final Logger log = LoggerFactory.getLogger(V1_ArtificialUrl.class);
 
     public static void main(String[] args) {
-        LOGGER.info("*********************************************************** Hello from " + V1_ArtificialUrl.class.getSimpleName());
+        log.info("*********************************************************** Hello from " + V1_ArtificialUrl.class.getSimpleName());
 
         Vertx vertx = Vertx.vertx();
         vertx.deployVerticle(new V1_ArtificialUrl());
@@ -25,7 +25,7 @@ public class V1_ArtificialUrl extends AbstractVerticle {
 
     @Override
     public void start() {
-        LOGGER.info("*********************************************************** Verticle App Started ***********************************************************");
+        log.info("*********************************************************** Verticle App Started ***********************************************************");
 
         Router router = Router.router(vertx);
 
@@ -56,7 +56,7 @@ public class V1_ArtificialUrl extends AbstractVerticle {
 
     @Override
     public void stop() {
-        LOGGER.info("*********************************************************** Verticle App Stopped ***********************************************************");
+        log.info("*********************************************************** Verticle App Stopped ***********************************************************");
     }
 }
 

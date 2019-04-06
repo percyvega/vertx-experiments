@@ -9,10 +9,10 @@ import io.vertx.core.logging.LoggerFactory;
 
 public class V2_DeploymentOptions extends AbstractVerticle {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(V2_DeploymentOptions.class);
+    private static final Logger log = LoggerFactory.getLogger(V2_DeploymentOptions.class);
 
     public static void main(String[] args) {
-        LOGGER.info("*********************************************************** Hello from " + V2_DeploymentOptions.class.getSimpleName());
+        log.info("*********************************************************** Hello from " + V2_DeploymentOptions.class.getSimpleName());
 
         Vertx vertx = Vertx.vertx();
         vertx.deployVerticle(new V2_DeploymentOptions(), getDeploymentOptions());
@@ -20,7 +20,7 @@ public class V2_DeploymentOptions extends AbstractVerticle {
 
     @Override
     public void start() {
-        LOGGER.info("*********************************************************** Verticle App Started ***********************************************************");
+        log.info("*********************************************************** Verticle App Started ***********************************************************");
 
         vertx
                 .createHttpServer()
@@ -32,7 +32,7 @@ public class V2_DeploymentOptions extends AbstractVerticle {
 
     @Override
     public void stop() {
-        LOGGER.info("*********************************************************** Verticle App Stopped ***********************************************************");
+        log.info("*********************************************************** Verticle App Stopped ***********************************************************");
     }
 
     private static DeploymentOptions getDeploymentOptions() {

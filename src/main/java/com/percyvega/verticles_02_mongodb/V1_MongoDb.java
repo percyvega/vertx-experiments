@@ -19,12 +19,12 @@ import static com.mongodb.client.model.Filters.regex;
 
 public class V1_MongoDb extends AbstractVerticle {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(V1_MongoDb.class);
+    private static final Logger log = LoggerFactory.getLogger(V1_MongoDb.class);
 
     private static MongoClient mongoClient;
 
     public static void main(String[] args) {
-        LOGGER.info("*********************************************************** Hello from " + V1_MongoDb.class.getSimpleName());
+        log.info("*********************************************************** Hello from " + V1_MongoDb.class.getSimpleName());
 
         Vertx vertx = Vertx.vertx();
         vertx.deployVerticle(new V1_MongoDb());
@@ -32,7 +32,7 @@ public class V1_MongoDb extends AbstractVerticle {
 
     @Override
     public void start() {
-        LOGGER.info("*********************************************************** Verticle App Started ***********************************************************");
+        log.info("*********************************************************** Verticle App Started ***********************************************************");
 
         initMongoClient();
 
@@ -66,7 +66,7 @@ public class V1_MongoDb extends AbstractVerticle {
             try {
                 List<JsonObject> objectList = results.result();
                 if (objectList == null || objectList.size() == 0) {
-                    LOGGER.info("No results found");
+                    log.info("No results found");
                 }
 
                 routingContext
@@ -75,14 +75,14 @@ public class V1_MongoDb extends AbstractVerticle {
                         .putHeader(HttpHeaders.CONTENT_TYPE, "application/json")
                         .end(Json.encodePrettily(objectList));
             } catch (Exception e) {
-                LOGGER.error(e.getMessage());
+                log.error(e.getMessage());
             }
         });
     }
 
     @Override
     public void stop() {
-        LOGGER.info("*********************************************************** Verticle App Stopped ***********************************************************");
+        log.info("*********************************************************** Verticle App Stopped ***********************************************************");
     }
 }
 

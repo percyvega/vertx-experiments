@@ -1,4 +1,4 @@
-package com.percyvega.verticles_01_http.group_02;
+package com.percyvega.v1_http.g2;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
@@ -12,7 +12,7 @@ public class V1_HtmlFilesUnderWebroot extends AbstractVerticle {
     private static final Logger log = LoggerFactory.getLogger(V1_HtmlFilesUnderWebroot.class);
 
     public static void main(String[] args) {
-        log.info("*********************************************************** Hello from " + V1_HtmlFilesUnderWebroot.class.getSimpleName());
+        log.info("*********************************************************** Running main() from " + V1_HtmlFilesUnderWebroot.class.getSimpleName());
 
         Vertx vertx = Vertx.vertx();
         vertx.deployVerticle(new V1_HtmlFilesUnderWebroot());

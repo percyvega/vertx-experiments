@@ -1,4 +1,4 @@
-package com.percyvega.verticles_03_verticleCommunication.group_03;
+package com.percyvega.v3_inter_verticle_communication.g3_SeparateJvms_EventBus_Clustered;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
@@ -7,14 +7,14 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 
-public class V2_HopefulSender extends AbstractVerticle {
+import java.time.LocalTime;
 
-    private static final Logger log = LoggerFactory.getLogger(V2_HopefulSender.class);
+public class SenderApp extends AbstractVerticle {
 
-    private static int counter = 0;
+    private static final Logger log = LoggerFactory.getLogger(SenderApp.class);
 
     public static void main(String[] args) {
-        log.info("*********************************************************** Hello from " + V2_HopefulSender.class.getSimpleName());
+        log.info("*********************************************************** Running main() from " + SenderApp.class.getSimpleName());
 
         VertxOptions vertxOptions = new VertxOptions();
         vertxOptions.setClustered(true);
@@ -22,7 +22,7 @@ public class V2_HopefulSender extends AbstractVerticle {
         Vertx.clusteredVertx(vertxOptions, resultHandler -> {
             if(resultHandler.succeeded()) {
                 Vertx vertx = resultHandler.result();
-                vertx.deployVerticle(new V2_HopefulSender());
+                vertx.deployVerticle(new SenderApp());
             }
         });
     }
@@ -35,16 +35,17 @@ public class V2_HopefulSender extends AbstractVerticle {
     }
 
     private void sendMessageToBus() {
-        String messageToSend = "Percy " + ++counter;
+        JsonObject messageToSend = new JsonObject();
+        messageToSend.put("Question", "What time is it over there? Here it is " + LocalTime.now());
 
-        log.info("+++++++++++++++++++++++++++++ Sending message: " + messageToSend);
+        log.info("Sending message: " + messageToSend);
 
-        vertx.eventBus().send("com.percyvega.vertx.eventbus.hello", messageToSend, replyHandler -> {
+        vertx.eventBus().send("com.percyvega.vertx.eventbus", messageToSend, replyHandler -> {
             if(replyHandler.succeeded()) {
                 JsonObject reply = (JsonObject) replyHandler.result().body();
-                log.info("+++++++++++++++++++++++++++++ Received reply: " + reply);
+                log.info("Received reply: " + reply);
             } else {
-                log.error("+++++++++++++++++++++++++++++ replyHandler failed");
+                log.error("replyHandler failed");
             }
         });
     }

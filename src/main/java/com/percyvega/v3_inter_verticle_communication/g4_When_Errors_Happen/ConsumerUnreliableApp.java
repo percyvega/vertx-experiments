@@ -1,6 +1,6 @@
-package com.percyvega.verticles_03_verticleCommunication.group_03;
+package com.percyvega.v3_inter_verticle_communication.g4_When_Errors_Happen;
 
-import com.percyvega.verticles_03_verticleCommunication.group_02.V1_EventBusConsumer;
+import com.percyvega.v3_inter_verticle_communication.g3_SeparateJvms_EventBus_Clustered.ConsumerApp;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
@@ -10,12 +10,12 @@ import io.vertx.core.logging.LoggerFactory;
 
 import java.util.Random;
 
-public class V1_UnreliableConsumer extends AbstractVerticle {
+public class ConsumerUnreliableApp extends AbstractVerticle {
 
-    private static final Logger log = LoggerFactory.getLogger(V1_EventBusConsumer.class);
+    private static final Logger log = LoggerFactory.getLogger(ConsumerApp.class);
 
     public static void main(String[] args) {
-        log.info("*********************************************************** Hello from " + V1_UnreliableConsumer.class.getSimpleName());
+        log.info("*********************************************************** Running main() from " + ConsumerUnreliableApp.class.getSimpleName());
 
         VertxOptions vertxOptions = new VertxOptions();
         vertxOptions.setClustered(true);
@@ -23,7 +23,7 @@ public class V1_UnreliableConsumer extends AbstractVerticle {
         Vertx.clusteredVertx(vertxOptions, resultHandler -> {
             if (resultHandler.succeeded()) {
                 Vertx vertx = resultHandler.result();
-                vertx.deployVerticle(new V1_UnreliableConsumer());
+                vertx.deployVerticle(new ConsumerUnreliableApp());
             }
         });
     }

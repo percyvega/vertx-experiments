@@ -24,7 +24,7 @@
 
         <!-- Vert.x properties -->
         <vertx.version>3.6.3</vertx.version>
-        <vertx.verticle>com.percyvega.verticles_01_http.group_01.V1_Hardcoded_Html</vertx.verticle>
+        <vertx.verticle>com.percyvega.v1_http.g1.V1_Hardcoded_Html</vertx.verticle>
     </properties>
 
     <dependencyManagement>

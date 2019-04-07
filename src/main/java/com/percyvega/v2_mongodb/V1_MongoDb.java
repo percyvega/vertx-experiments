@@ -1,4 +1,4 @@
-package com.percyvega.verticles_02_mongodb;
+package com.percyvega.v2_mongodb;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
@@ -24,7 +24,7 @@ public class V1_MongoDb extends AbstractVerticle {
     private static MongoClient mongoClient;
 
     public static void main(String[] args) {
-        log.info("*********************************************************** Hello from " + V1_MongoDb.class.getSimpleName());
+        log.info("*********************************************************** Running main() from " + V1_MongoDb.class.getSimpleName());
 
         Vertx vertx = Vertx.vertx();
         vertx.deployVerticle(new V1_MongoDb());

@@ -1,4 +1,4 @@
-package com.percyvega.verticles_01_http.group_01;
+package com.percyvega.v1_http.g1;
 
 import io.vertx.config.ConfigRetriever;
 import io.vertx.core.AbstractVerticle;
@@ -13,7 +13,7 @@ public class V3_PrintConfig extends AbstractVerticle {
     private static final Logger log = LoggerFactory.getLogger(V3_PrintConfig.class);
 
     public static void main(String[] args) {
-        log.info("*********************************************************** Hello from " + V3_PrintConfig.class.getSimpleName());
+        log.info("*********************************************************** Running main() from " + V3_PrintConfig.class.getSimpleName());
 
         Vertx vertx = Vertx.vertx();
 

@@ -1,4 +1,4 @@
-package com.percyvega.verticles_01_http.group_01;
+package com.percyvega.v1_http.g1;
 
 import io.vertx.core.Vertx;
 

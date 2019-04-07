@@ -1,4 +1,4 @@
-package com.percyvega.verticles_03_verticleCommunication.group_01;
+package com.percyvega.v3_inter_verticle_communication.g2_SameJvm_EventBus_NotClustered;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
@@ -42,8 +42,14 @@ class SenderVerticle extends AbstractVerticle {
     }
 
     private void sendMessageToBus() {
-        Date date = new Date(System.currentTimeMillis());
-        vertx.eventBus().send(EventBusSameJvm.EVENT_BUS_ADDRESS, date.toString());
+        String message = "Sending a message at " + new Date(System.currentTimeMillis());
+        vertx.eventBus().send(EventBusSameJvm.EVENT_BUS_ADDRESS, message, asyncResult -> {
+            if(asyncResult.succeeded()) {
+                log.info("Received this reply: " + asyncResult.result().body());
+            } else {
+                log.error("No reply");
+            }
+        });
     }
 }
 
@@ -52,8 +58,10 @@ class ConsumerVerticle extends AbstractVerticle {
 
     @Override
     public void start() {
-        vertx.eventBus().consumer(EventBusSameJvm.EVENT_BUS_ADDRESS, (message) -> {
-            log.info(message.body().toString());
+        vertx.eventBus().consumer(EventBusSameJvm.EVENT_BUS_ADDRESS, message -> {
+            log.info("Received this message: " + message.body());
+            String reply = "Replying at " + new Date(System.currentTimeMillis());
+            message.reply(reply);
         });
     }
 }

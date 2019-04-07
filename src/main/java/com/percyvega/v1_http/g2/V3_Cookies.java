@@ -1,4 +1,4 @@
-package com.percyvega.verticles_01_http.group_02;
+package com.percyvega.v1_http.g2;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
@@ -21,7 +21,7 @@ public class V3_Cookies extends AbstractVerticle {
     private static final Logger log = LoggerFactory.getLogger(V3_Cookies.class);
 
     public static void main(String[] args) {
-        log.info("*********************************************************** Hello from " + V3_Cookies.class.getSimpleName());
+        log.info("*********************************************************** Running main() from " + V3_Cookies.class.getSimpleName());
 
         Vertx vertx = Vertx.vertx();
         vertx.deployVerticle(new V3_Cookies());

@@ -1,4 +1,4 @@
-package com.percyvega.verticles_01_http.group_03;
+package com.percyvega.v1_http.g3;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
@@ -8,7 +8,6 @@ import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
-import io.vertx.ext.web.handler.StaticHandler;
 
 import java.util.Arrays;
 
@@ -17,7 +16,7 @@ public class V1_ArtificialUrl extends AbstractVerticle {
     private static final Logger log = LoggerFactory.getLogger(V1_ArtificialUrl.class);
 
     public static void main(String[] args) {
-        log.info("*********************************************************** Hello from " + V1_ArtificialUrl.class.getSimpleName());
+        log.info("*********************************************************** Running main() from " + V1_ArtificialUrl.class.getSimpleName());
 
         Vertx vertx = Vertx.vertx();
         vertx.deployVerticle(new V1_ArtificialUrl());
@@ -32,10 +31,6 @@ public class V1_ArtificialUrl extends AbstractVerticle {
         router
                 .get("/api/v1/products.html")
                 .handler(this::getAllProducts);
-
-        router
-                .route()
-                .handler(StaticHandler.create().setCachingEnabled(false));
 
         vertx
                 .createHttpServer()

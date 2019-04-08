@@ -1,17 +1,19 @@
-package com.percyvega.v3_inter_verticle_communication.g3_SeparateJvms_EventBus_Clustered;
+package com.percyvega.v3_inter_verticle_communication.g2_eventBus.g2_separateJvms_clustered.send;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
 import io.vertx.core.json.JsonObject;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import java.time.LocalTime;
 
 public class SenderApp extends AbstractVerticle {
 
-    private static final Logger log = LoggerFactory.getLogger(SenderApp.class);
+    private static final Logger log = LogManager.getLogger(SenderApp.class.getName());
+    public static final String ADDRESS = "com.percyvega.vertx.eventbus";
+    private int countMessages = 0;
 
     public static void main(String[] args) {
         log.info("*********************************************************** Running main() from " + SenderApp.class.getSimpleName());
@@ -29,18 +31,19 @@ public class SenderApp extends AbstractVerticle {
 
     @Override
     public void start() {
-        log.info("*********************************************************** Verticle App Started ***********************************************************");
+        log.info("*********************************************************** Starting " + this.getClass().getSimpleName() + ".start() ***********************************************************");
 
         vertx.setPeriodic(5000, handler -> sendMessageToBus());
     }
 
     private void sendMessageToBus() {
-        JsonObject messageToSend = new JsonObject();
-        messageToSend.put("Question", "What time is it over there? Here it is " + LocalTime.now());
+        JsonObject messageToSend = new JsonObject()
+                .put("messageId", ++countMessages)
+                .put("Question", "What time is it over there? Here it is " + LocalTime.now());
 
         log.info("Sending message: " + messageToSend);
 
-        vertx.eventBus().send("com.percyvega.vertx.eventbus", messageToSend, replyHandler -> {
+        vertx.eventBus().send(ADDRESS, messageToSend, replyHandler -> {
             if(replyHandler.succeeded()) {
                 JsonObject reply = (JsonObject) replyHandler.result().body();
                 log.info("Received reply: " + reply);
@@ -52,6 +55,6 @@ public class SenderApp extends AbstractVerticle {
 
     @Override
     public void stop() {
-        log.info("*********************************************************** Verticle App Stopped ***********************************************************");
+        log.info("*********************************************************** Starting " + this.getClass().getSimpleName() + ".stop() ***********************************************************");
     }
 }

@@ -25,6 +25,7 @@
         <!-- Vert.x properties -->
         <vertx.version>3.6.3</vertx.version>
         <vertx.verticle>com.percyvega.v1_http.g1.V1_Hardcoded_Html</vertx.verticle>
+        <log4j.version>2.11.2</log4j.version>
     </properties>
 
     <dependencyManagement>
@@ -83,7 +84,7 @@
         <!-- testing -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
+            <artifactId>junit-jupiter</artifactId>
             <version>5.4.0</version>
             <scope>test</scope>
         </dependency>
@@ -92,6 +93,23 @@
             <artifactId>assertj-core</artifactId>
             <version>3.12.2</version>
             <scope>test</scope>
+        </dependency>
+
+        <!-- logging -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <version>3.3.4</version>
         </dependency>
     </dependencies>
 

@@ -3,8 +3,8 @@ package com.percyvega.v1_http.g2;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpHeaders;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.StaticHandler;
@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 public class V2_HtmlFileWithPlaceholders extends AbstractVerticle {
 
-    private static final Logger log = LoggerFactory.getLogger(V2_HtmlFileWithPlaceholders.class);
+    private static final Logger log = LogManager.getLogger(V2_HtmlFileWithPlaceholders.class.getName());
 
     public static void main(String[] args) {
         log.info("*********************************************************** Running main() from " + V2_HtmlFileWithPlaceholders.class.getSimpleName());
@@ -26,7 +26,7 @@ public class V2_HtmlFileWithPlaceholders extends AbstractVerticle {
 
     @Override
     public void start() {
-        log.info("*********************************************************** Verticle App Started ***********************************************************");
+        log.info("*********************************************************** Starting " + this.getClass().getSimpleName() + ".start() ***********************************************************");
 
         Router router = Router.router(vertx);
 
@@ -70,6 +70,6 @@ public class V2_HtmlFileWithPlaceholders extends AbstractVerticle {
 
     @Override
     public void stop() {
-        log.info("*********************************************************** Verticle App Stopped ***********************************************************");
+        log.info("*********************************************************** Starting " + this.getClass().getSimpleName() + ".stop() ***********************************************************");
     }
 }

@@ -4,8 +4,8 @@ import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpHeaders;
 import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonObject;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
@@ -17,7 +17,7 @@ import java.util.Optional;
 
 public class ProductResources {
 
-    private static final Logger log = LoggerFactory.getLogger(ProductResources.class);
+    private static final Logger log = LogManager.getLogger(ProductResources.class.getName());
 
     private static List<Product> products = new ArrayList<>(Arrays.asList(
             new Product(1, "My item 1"),

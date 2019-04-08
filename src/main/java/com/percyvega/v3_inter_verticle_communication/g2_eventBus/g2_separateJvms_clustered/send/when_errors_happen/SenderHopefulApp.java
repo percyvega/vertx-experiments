@@ -1,15 +1,15 @@
-package com.percyvega.v3_inter_verticle_communication.g4_When_Errors_Happen;
+package com.percyvega.v3_inter_verticle_communication.g2_eventBus.g2_separateJvms_clustered.send.when_errors_happen;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
 import io.vertx.core.json.JsonObject;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 public class SenderHopefulApp extends AbstractVerticle {
 
-    private static final Logger log = LoggerFactory.getLogger(SenderHopefulApp.class);
+    private static final Logger log = LogManager.getLogger(SenderHopefulApp.class.getName());
 
     private static int counter = 0;
 
@@ -29,7 +29,7 @@ public class SenderHopefulApp extends AbstractVerticle {
 
     @Override
     public void start() {
-        log.info("*********************************************************** Verticle App Started ***********************************************************");
+        log.info("*********************************************************** Starting " + this.getClass().getSimpleName() + ".start() ***********************************************************");
 
         vertx.setPeriodic(5000, handler -> sendMessageToBus());
     }
@@ -51,6 +51,6 @@ public class SenderHopefulApp extends AbstractVerticle {
 
     @Override
     public void stop() {
-        log.info("*********************************************************** Verticle App Stopped ***********************************************************");
+        log.info("*********************************************************** Starting " + this.getClass().getSimpleName() + ".stop() ***********************************************************");
     }
 }

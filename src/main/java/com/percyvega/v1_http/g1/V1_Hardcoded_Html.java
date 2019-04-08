@@ -2,12 +2,12 @@ package com.percyvega.v1_http.g1;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 public class V1_Hardcoded_Html extends AbstractVerticle {
 
-    private static final Logger log = LoggerFactory.getLogger(V1_Hardcoded_Html.class);
+    private static final Logger log = LogManager.getLogger(V1_Hardcoded_Html.class.getName());
 
     public static void main(String[] args) {
         log.info("*********************************************************** Running main() from " + V1_Hardcoded_Html.class.getSimpleName());
@@ -18,7 +18,7 @@ public class V1_Hardcoded_Html extends AbstractVerticle {
 
     @Override
     public void start() {
-        log.info("*********************************************************** Verticle App Started ***********************************************************");
+        log.info("*********************************************************** Starting " + this.getClass().getSimpleName() + ".start() ***********************************************************");
 
         vertx
                 .createHttpServer()
@@ -30,6 +30,6 @@ public class V1_Hardcoded_Html extends AbstractVerticle {
 
     @Override
     public void stop() {
-        log.info("*********************************************************** Verticle App Stopped ***********************************************************");
+        log.info("*********************************************************** Starting " + this.getClass().getSimpleName() + ".stop() ***********************************************************");
     }
 }

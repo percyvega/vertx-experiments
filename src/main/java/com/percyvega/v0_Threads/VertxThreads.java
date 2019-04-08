@@ -3,8 +3,8 @@ package com.percyvega.v0_Threads;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class VertxThreads {
 
-    private static final Logger log = LoggerFactory.getLogger(VertxThreads.class);
+    private static final Logger log = LogManager.getLogger(VertxThreads.class.getName());
 
     private static final List<String> threadNamesAlreadyDisplayed = new ArrayList<>();
     private static int threadsCount = 0;

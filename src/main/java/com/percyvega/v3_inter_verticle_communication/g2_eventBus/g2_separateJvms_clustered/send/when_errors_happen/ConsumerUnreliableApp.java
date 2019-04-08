@@ -1,18 +1,17 @@
-package com.percyvega.v3_inter_verticle_communication.g4_When_Errors_Happen;
+package com.percyvega.v3_inter_verticle_communication.g2_eventBus.g2_separateJvms_clustered.send.when_errors_happen;
 
-import com.percyvega.v3_inter_verticle_communication.g3_SeparateJvms_EventBus_Clustered.ConsumerApp;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
 import io.vertx.core.json.JsonObject;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import java.util.Random;
 
 public class ConsumerUnreliableApp extends AbstractVerticle {
 
-    private static final Logger log = LoggerFactory.getLogger(ConsumerApp.class);
+    private static final Logger log = LogManager.getLogger(ConsumerUnreliableApp.class.getName());
 
     public static void main(String[] args) {
         log.info("*********************************************************** Running main() from " + ConsumerUnreliableApp.class.getSimpleName());
@@ -30,7 +29,7 @@ public class ConsumerUnreliableApp extends AbstractVerticle {
 
     @Override
     public void start() {
-        log.info("*********************************************************** Verticle App Started ***********************************************************");
+        log.info("*********************************************************** Starting " + this.getClass().getSimpleName() + ".start() ***********************************************************");
 
         Random random = new Random();
         vertx.eventBus().<String>consumer("com.percyvega.vertx.eventbus.hello", message -> {
@@ -38,7 +37,7 @@ public class ConsumerUnreliableApp extends AbstractVerticle {
             log.info("+++++++++++++++++++++++++++++ Received " + messageBody);
 
             int chaos = random.nextInt(10);
-            JsonObject json = new JsonObject().put("served-by", this.toString());
+            JsonObject json = new JsonObject().put("served-by", this.getClass().getSimpleName());
 
             if (chaos < 6) {
                 JsonObject jsonObject;
@@ -61,6 +60,6 @@ public class ConsumerUnreliableApp extends AbstractVerticle {
 
     @Override
     public void stop() {
-        log.info("*********************************************************** Verticle App Stopped ***********************************************************");
+        log.info("*********************************************************** Starting " + this.getClass().getSimpleName() + ".stop() ***********************************************************");
     }
 }

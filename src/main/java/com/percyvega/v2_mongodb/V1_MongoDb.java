@@ -5,8 +5,8 @@ import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpHeaders;
 import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonObject;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import io.vertx.ext.mongo.FindOptions;
 import io.vertx.ext.mongo.MongoClient;
 import io.vertx.ext.web.Router;
@@ -19,7 +19,7 @@ import static com.mongodb.client.model.Filters.regex;
 
 public class V1_MongoDb extends AbstractVerticle {
 
-    private static final Logger log = LoggerFactory.getLogger(V1_MongoDb.class);
+    private static final Logger log = LogManager.getLogger(V1_MongoDb.class.getName());
 
     private static MongoClient mongoClient;
 
@@ -32,7 +32,7 @@ public class V1_MongoDb extends AbstractVerticle {
 
     @Override
     public void start() {
-        log.info("*********************************************************** Verticle App Started ***********************************************************");
+        log.info("*********************************************************** Starting " + this.getClass().getSimpleName() + ".start() ***********************************************************");
 
         initMongoClient();
 
@@ -82,7 +82,7 @@ public class V1_MongoDb extends AbstractVerticle {
 
     @Override
     public void stop() {
-        log.info("*********************************************************** Verticle App Stopped ***********************************************************");
+        log.info("*********************************************************** Starting " + this.getClass().getSimpleName() + ".stop() ***********************************************************");
     }
 }
 

@@ -4,12 +4,12 @@ import io.vertx.core.AbstractVerticle;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 public class V2_DeploymentOptions extends AbstractVerticle {
 
-    private static final Logger log = LoggerFactory.getLogger(V2_DeploymentOptions.class);
+    private static final Logger log = LogManager.getLogger(V2_DeploymentOptions.class.getName());
 
     public static void main(String[] args) {
         log.info("*********************************************************** Running main() from " + V2_DeploymentOptions.class.getSimpleName());
@@ -20,7 +20,7 @@ public class V2_DeploymentOptions extends AbstractVerticle {
 
     @Override
     public void start() {
-        log.info("*********************************************************** Verticle App Started ***********************************************************");
+        log.info("*********************************************************** Starting " + this.getClass().getSimpleName() + ".start() ***********************************************************");
 
         vertx
                 .createHttpServer()
@@ -32,7 +32,7 @@ public class V2_DeploymentOptions extends AbstractVerticle {
 
     @Override
     public void stop() {
-        log.info("*********************************************************** Verticle App Stopped ***********************************************************");
+        log.info("*********************************************************** Starting " + this.getClass().getSimpleName() + ".stop() ***********************************************************");
     }
 
     private static DeploymentOptions getDeploymentOptions() {

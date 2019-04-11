@@ -1,10 +1,9 @@
 package com.percyvega.v0_Threads;
 
-import io.vertx.core.AbstractVerticle;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
-import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,16 +63,3 @@ public class VertxThreads {
     }
 }
 
-class MyVerticle extends AbstractVerticle {
-    private final Map<String, AtomicInteger> threadCounts;
-
-    MyVerticle(Map<String, AtomicInteger> threadCounts) {
-        this.threadCounts = threadCounts;
-    }
-
-    @Override
-    public void start() {
-        threadCounts.computeIfAbsent(Thread.currentThread().getName(),
-                t -> new AtomicInteger(0)).incrementAndGet();
-    }
-}

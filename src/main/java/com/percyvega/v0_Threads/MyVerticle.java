@@ -14,7 +14,8 @@ public class MyVerticle extends AbstractVerticle {
 
     @Override
     public void start() {
-        threadCounts.computeIfAbsent(Thread.currentThread().getName(),
-                t -> new AtomicInteger(0)).incrementAndGet();
+        threadCounts
+                .computeIfAbsent(Thread.currentThread().getName(), t -> new AtomicInteger(0))
+                .incrementAndGet();
     }
 }

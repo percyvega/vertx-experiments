@@ -18,7 +18,7 @@
         <!-- Vert.x properties -->
         <vertx.version>3.8.3</vertx.version>
         <vertx.verticle>com.percyvega.experiments.v1_http.g1.V1_Hardcoded_Html</vertx.verticle>
-        <log4j.version>2.12.1</log4j.version>
+        <log4j.version>2.13.3</log4j.version>
     </properties>
 
     <dependencyManagement>
